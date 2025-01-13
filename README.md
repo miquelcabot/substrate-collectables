@@ -1,6 +1,4 @@
-# Substrate Collectables Workshop: Starting Template
-
-This is the starting template for: https://github.com/shawntabrizi/substrate-collectables-workshop
+# Substrate Collectables
 
 ## Setup
 
