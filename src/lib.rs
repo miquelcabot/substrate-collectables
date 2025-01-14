@@ -18,16 +18,18 @@ pub mod pallet {
         type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
     }
 
+    #[derive(Encode, Decode, MaxEncodedLen, TypeInfo)]
+    #[scale_info(skip_type_params(T))]
     pub struct Kitty<T: Config> {
-        dna: [u8; 32],
-        owner: T::AccountId,
+        pub dna: [u8; 32],
+        pub owner: T::AccountId,
     }
 
     #[pallet::storage]
     pub(super) type CountForKitties<T: Config> = StorageValue<Value = u32, QueryKind = ValueQuery>;
 
     #[pallet::storage]
-    pub(super) type Kitties<T: Config> = StorageMap<Key = [u8; 32], Value = ()>;
+    pub(super) type Kitties<T: Config> = StorageMap<Key = [u8; 32], Value = Kitty<T>>;
 
     #[pallet::event]
     #[pallet::generate_deposit(pub(super) fn deposit_event)]
